@@ -12,24 +12,20 @@
           margin-bottom: 0;
           border-radius: 0;
         }
-        
         /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
         .row.content {height: 450px}
-        
         /* Set gray background color and 100% height */
         .sidenav {
           padding-top: 20px;
           background-color: #f1f1f1;
           height: 100%;
         }
-        
         /* Set black background color, white text and some padding */
         footer {
           background-color: #555;
           color: white;
           padding: 15px;
         }
-        
         /* On small screens, set height to 'auto' for sidenav and grid */
         @media screen and (max-width: 767px) {
           .sidenav {
@@ -41,7 +37,6 @@
       </style>
     </head>
     <body>
-    
         <nav class="navbar navbar-inverse">
           <div class="container-fluid">
             <div class="navbar-header">
@@ -59,27 +54,59 @@
             </div>
           </div>
         </nav>
-          
         <div class="container-fluid text-center">    
           <div class="row content">
             <div class="col-sm-3 sidenav">
-              <p><a href="#" target="_blank">Link</a></p>
+              <p><a href="http://www.transitchicago.com/" target="_blank">The CTA's Website</a></p>
             </div>
             <div class="col-sm-9 text-left"> 
               <h1>CTA Bus Tracker</h1>
               <form class="w3-container">
                   <input id="input" class="w3-input w3-animate-input" type="text" style="width:30%" placeholder="Enter a bus number"><br>
+                  <label>Direction:</label>
+                  <select class="w3-select" name="direction">
+                    <option value="" disabled selected>Choose</option>
+                    <option value="Northbound">Northbound</option>
+                    <option value="Southbound">Southbound</option>
+                    <option value="Eastbound">Eastbound</option>
+                    <option value="Westbound">Westbound</option>
+                  </select>
+                  <br><br>
                   <button id="btn" class="w3-btn" type="button">Search</button>
               </form>
+              <hr>
+              <div id="output"></div>
             </div>
           </div>
         </div>
-        
         <footer class="container-fluid text-center">
           <p>Made by Ethan Pizarro</p>
         </footer>
-        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script>
+          /* global $ */
+          $(function() {
+            var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+            var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions";
+            $.ajax({
+                url: apiPassThruUrl,
+                dataType: "json",
+                method: 'GET',
+                data: {"apiEndpoint": apiEndpoint,
+                        "key" : "VP7Jg5tpX5SdMKRrsuEgS4WjY",
+                        "format":"json",
+                        "stpid":"8195,8417,12569,12527",
+                        "top":""
+                }
+              }).done (function (data) {
+                $("#output").append("<h1>Bus Routes</h1>");
+                $.each(data["bustime-response"] ["prd"], function(i,v) {
+                    console.log(data);
+                    $("#output").append("Route #" + v.rt + ", " + v.rtdir + ", " + v.prdctdn + "<br>" + "<hr>");
+              });
+            });
+          });
+        </script>
     </body>
 </html>
