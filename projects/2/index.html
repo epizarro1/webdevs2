@@ -34,6 +34,7 @@
           }
           .row.content {height:auto;} 
         }
+        .none {display:none;}
       </style>
     </head>
     <body>
@@ -62,16 +63,20 @@
             <div class="col-sm-9 text-left"> 
               <h1>CTA Bus Tracker</h1>
               <form class="w3-container">
-                  <input id="input" class="w3-input w3-animate-input" type="text" style="width:30%" placeholder="Enter a bus number"><br>
+                  <label>Bus:</label>
+                  <select class="w3-select" name="bus" id="bus">
+                    <option value="" selected>Choose</option>
+                    <option value="49 or X49">49 or X49</option>
+                    <option value="152">152</option>
+                  </select><br><br>
                   <label>Direction:</label>
                   <select class="w3-select" name="direction">
-                    <option value="" disabled selected>Choose</option>
+                    <option value="" selected>Choose</option>
                     <option value="Northbound">Northbound</option>
                     <option value="Southbound">Southbound</option>
                     <option value="Eastbound">Eastbound</option>
                     <option value="Westbound">Westbound</option>
-                  </select>
-                  <br><br>
+                  </select><br><br>
                   <button id="btn" class="w3-btn" type="button">Search</button>
               </form>
               <hr>
@@ -89,21 +94,35 @@
           $(function() {
             var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
             var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions";
-            $.ajax({
+            var stopIds;
+            $("#btn").click(function() {
+              $("#output").html("");
+              if ($("#bus").val() == 152) {
+                stopIds = "12569,12527";
+              }
+              if ($("#bus").val() == "49 or X49") {
+                stopIds = "8195,8417";
+              }
+              if ($("#bus").val() == "") {
+                stopIds = "8195,8417,12569,12527";
+              }
+              console.log(stopIds);
+              $.ajax({
                 url: apiPassThruUrl,
                 dataType: "json",
                 method: 'GET',
                 data: {"apiEndpoint": apiEndpoint,
                         "key" : "VP7Jg5tpX5SdMKRrsuEgS4WjY",
                         "format":"json",
-                        "stpid":"8195,8417,12569,12527",
+                        "stpid": stopIds,
                         "top":""
                 }
               }).done (function (data) {
                 $("#output").append("<h1>Bus Routes</h1>");
-                $.each(data["bustime-response"] ["prd"], function(i,v) {
+                $.each(data["bustime-response"]["prd"], function(i,v) {
                     console.log(data);
-                    $("#output").append("Route #" + v.rt + ", " + v.rtdir + ", " + v.prdctdn + "<br>" + "<hr>");
+                    $("#output").append(v.rt + ", " + v.prdtm + ", " + v.prdctdn + "<br>" + "<hr>");
+                });
               });
             });
           });
