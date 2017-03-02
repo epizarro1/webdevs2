@@ -63,10 +63,11 @@
             </div>
             <div class="col-sm-9 text-left"> 
               <h1>CTA Bus Tracker</h1>
+              <p>This app is for showing the predictions for X49, 49, and 152 buses at the Western and Addison stops.</p>
               <form class="w3-container">
                   <label>Bus:</label>
                   <select class="w3-select" name="bus" id="bus">
-                    <option value="" selected>Choose</option>
+                    <option value="" selected>All</option>
                     <option value="49/X49">49/X49</option>
                     <option value="152">152</option>
                   </select><br><br>
@@ -163,7 +164,7 @@
                     + v.rt
                     + "<br>Delayed: "
                     + delay
-                    + "<br>Minutes left: "
+                    + "<br>Minutes Until Arrival: "
                     + v.prdctdn
                     + "<hr>";
                     if (stopIds === "8195,8417") {
