@@ -35,6 +35,7 @@
           .row.content {height:auto;} 
         }
         .none {display:none;}
+        para {margin:20px;}
       </style>
     </head>
     <body>
@@ -66,21 +67,47 @@
                   <label>Bus:</label>
                   <select class="w3-select" name="bus" id="bus">
                     <option value="" selected>Choose</option>
-                    <option value="49 or X49">49 or X49</option>
+                    <option value="49/X49">49/X49</option>
                     <option value="152">152</option>
-                  </select><br><br>
-                  <label>Direction:</label>
-                  <select class="w3-select" name="direction">
-                    <option value="" selected>Choose</option>
-                    <option value="Northbound">Northbound</option>
-                    <option value="Southbound">Southbound</option>
-                    <option value="Eastbound">Eastbound</option>
-                    <option value="Westbound">Westbound</option>
                   </select><br><br>
                   <button id="btn" class="w3-btn" type="button">Search</button>
               </form>
               <hr>
-              <div id="output"></div>
+              <div id="north" class="w3-card-4 none clear">
+                <header class="w3-container w3-blue">
+                  <h1>Northbound</h1>
+                </header>
+                <div class="w3-container">
+                  <p id="p1" class="para"></p>
+                </div>
+              </div>
+              <hr id="hr1" class="none hr">
+              <div id="south" class="w3-card-4 none clear">
+                <header class="w3-container w3-blue">
+                  <h1>Southbound</h1>
+                </header>
+                <div class="w3-container">
+                  <p id="p2" class="para"></p>
+                </div>
+              </div>
+              <hr id="hr3" class="none hr">
+              <div id="east" class="w3-card-4 none clear">
+                <header class="w3-container w3-blue">
+                  <h1>Eastbound</h1>
+                </header>
+                <div class="w3-container">
+                  <p id="p3" class="para"></p>
+                </div>
+              </div>
+              <hr id="hr2" class="none hr">
+              <div id="west" class="w3-card-4 none clear">
+                <header class="w3-container w3-blue">
+                  <h1>Westbound</h1>
+                </header>
+                <div class="w3-container">
+                  <p id="p4" class="para"></p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -96,17 +123,18 @@
             var apiEndpoint = "http://www.ctabustracker.com/bustime/api/v2/getpredictions";
             var stopIds;
             $("#btn").click(function() {
-              $("#output").html("");
+              $(".para").html("");
+              $(".clear").addClass("none");
+              $(".hr").addClass("none");
               if ($("#bus").val() == 152) {
                 stopIds = "12569,12527";
               }
-              if ($("#bus").val() == "49 or X49") {
+              if ($("#bus").val() == "49/X49") {
                 stopIds = "8195,8417";
               }
               if ($("#bus").val() == "") {
                 stopIds = "8195,8417,12569,12527";
               }
-              console.log(stopIds);
               $.ajax({
                 url: apiPassThruUrl,
                 dataType: "json",
@@ -118,10 +146,64 @@
                         "top":""
                 }
               }).done (function (data) {
-                $("#output").append("<h1>Bus Routes</h1>");
                 $.each(data["bustime-response"]["prd"], function(i,v) {
-                    console.log(data);
-                    $("#output").append(v.rt + ", " + v.prdtm + ", " + v.prdctdn + "<br>" + "<hr>");
+                    var delay = v.dly;
+                    if (delay == false) {
+                      delay = "No";
+                    } else {
+                      delay = "Yes";
+                    }
+                    var html = "Direction: "
+                    + v.rtdir
+                    + "<br>Timestamp: "
+                    + v.tmstmp
+                    + "<br>Stop Name: "
+                    + v.stpnm
+                    + "<br>Route: "
+                    + v.rt
+                    + "<br>Delayed: "
+                    + delay
+                    + "<br>Minutes left: "
+                    + v.prdctdn
+                    + "<hr>";
+                    if (stopIds === "8195,8417") {
+                      $("#north").removeClass("none");
+                      $("#south").removeClass("none");
+                      $("#hr1").removeClass("none");
+                      if (v.rtdir == "Northbound") {
+                        $("#p1").append(html);
+                      } else {
+                        $("#p2").append(html);
+                      }
+                    }
+                    if (stopIds === "12569,12527") {
+                      $("#east").removeClass("none");
+                      $("#west").removeClass("none");
+                      $("#hr2").removeClass("none");
+                      if (v.rtdir == "Eastbound") {
+                        $("#p3").append(html);
+                      } else {
+                        $("#p4").append(html);
+                      }
+                    }
+                    if (stopIds === "8195,8417,12569,12527") {
+                      $("#north").removeClass("none");
+                      $("#south").removeClass("none");
+                      $("#hr1").removeClass("none");
+                      $("#east").removeClass("none");
+                      $("#west").removeClass("none");
+                      $("#hr2").removeClass("none");
+                      $("#hr3").removeClass("none");
+                      if (v.rtdir == "Northbound") {
+                        $("#p1").append(html);
+                      } else if (v.rtdir == "Southbound"){
+                        $("#p2").append(html);
+                      } else if (v.rtdir == "Eastbound") {
+                        $("#p3").append(html);
+                      } else {
+                        $("#p4").append(html);
+                      }
+                    }
                 });
               });
             });
