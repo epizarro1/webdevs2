@@ -1,24 +1,24 @@
 {
-  "name": "Weather",
-  "short_name": "Weather",
+  "name": "CTA Bus Tracker",
+  "short_name": "CTA Bus",
   "icons": [{
-    "src": "images/icons/icon-128x128.png",
+      "src": "bird.png",
       "sizes": "128x128",
       "type": "image/png"
     }, {
-      "src": "images/icons/icon-144x144.png",
+      "src": "duck.jpg",
       "sizes": "144x144",
-      "type": "image/png"
+      "type": "image/jpg"
     }, {
-      "src": "images/icons/icon-152x152.png",
+      "src": "152.jpg",
       "sizes": "152x152",
-      "type": "image/png"
+      "type": "image/jpg"
     }, {
-      "src": "images/icons/icon-192x192.png",
+      "src": "192.jpg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/jpg"
     }, {
-      "src": "images/icons/icon-256x256.png",
+      "src": "256.png",
       "sizes": "256x256",
       "type": "image/png"
     }],
