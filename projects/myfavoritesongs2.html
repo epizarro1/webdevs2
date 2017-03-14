@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Favorite Songs: Part 2</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    
+    body {
+        font-family: 'Abhaya Libre', serif;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><img src="./images/logo.jpg" alt="Logo"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="myhobbies.html">My Hobbies</a></li>
+        <li><a href="myfavoritesongs1.html">My Favorite Songs: Part 1</a></li>
+        <li class="active"><a href="myfavoritesongs2.html">My Favorite Songs: Part 2</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <p><a href="https://www.youtube.com/watch?v=DYz-LjtiVOc" target="_blank">Dynamic Duo - AEAO</a></p>
+      <p><a href="https://www.youtube.com/watch?v=TW9uj83Vq-0" target="_blank">Kwabs - Walk</a></p>
+      <p><a href="https://www.youtube.com/watch?v=zRTqSDE1ERc" target="_blank">OBB - All Eyes On You</a></p>
+      <p><a href="https://www.youtube.com/watch?v=_mPd_SDAryQ" target="_blank">Lupe Fiasco - Battle Scars</a></p>
+      <p><a href="https://www.youtube.com/watch?v=a59gmGkq_pw" target="_blank">Major Lazer - Cold Water</a></p>
+      <p><a href="https://www.youtube.com/watch?v=GSBFehvLJDc" target="_blank">Train - 50 Ways to Say Goodbye</a></p>
+      <p><a href="https://www.youtube.com/watch?v=SMs0GnYze34" target="_blank">DJ Snake - Let Me Love You</a></p>
+      <p><a href="https://www.youtube.com/watch?v=RcmKbTR--iA" target="_blank">Far East Movement - Rocketeer</a></p>
+      <p><a href="https://www.youtube.com/watch?v=PH4JPgVD2SM" target="_blank">Kanye West - Amazing</a></p>
+      <p><a href="https://www.youtube.com/watch?v=UAWcs5H-qgQ" target="_blank">Ed Sheeran - The A Team</a></p>
+    </div>
+    <div class="col-sm-9 text-left">
+      <h1>My Favorite Songs: Part 2</h1>
+      <ol reversed>
+          <li>Dynamic Duo - AEAO</li>
+          <li>Kwabs - Walk</li>
+          <li>OBB - All Eyes On You</li>
+          <li>Lupe Fiasco - Battle Scars</li>
+          <li>Major Lazer - Cold Water</li>
+          <li>Train - 50 Ways to Say Goodbye</li>
+          <li>DJ Snake - Let Me Love You</li>
+          <li>Far East Movement - Rocketeer</li>
+          <li>Kanye West - Amazing</li>
+          <li>Ed Sheeran - The A Team</li>
+      </ol>
+      <h3>Dynamic Duo - AEAO</h3>
+      <audio controls>
+          <source src="./audio/aeao.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Kwabs - Walk</h3>
+      <audio controls>
+          <source src="./audio/walk.mp3" type="audio/mpeg">
+      </audio>
+      <h3>OBB - All Eyes on You</h3>
+      <audio controls>
+          <source src="./audio/alleyesonyou.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Lupe Fiasco - Battle Scars</h3>
+      <audio controls>
+          <source src="./audio/battlescars.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Major Lazer - Cold Water</h3>
+      <audio controls>
+          <source src="./audio/coldwater.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Train - 50 Ways to Say Goodbye</h3>
+      <audio controls>
+          <source src="./audio/50waystosaygoodbye.mp3" type="audio/mpeg">
+      </audio>
+      <h3>DJ Snake - Let Me Love You</h3>
+      <audio controls>
+          <source src="./audio/letmeloveyou.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Far East Movement - Rocketeer</h3>
+      <audio controls>
+          <source src="./audio/rocketeer.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Kanye West - Amazing</h3>
+      <audio controls>
+          <source src="./audio/amazing.mp3" type="audio/mp3">
+      </audio>
+      <h3>Ed Sheeran - The A Team</h3>
+      <audio controls>
+          <source src="./audio/theateam.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Made by Ethan Pizarro</p>
+</footer>
+
+</body>
+</html>

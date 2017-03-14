@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    
+    body {
+        font-family: 'Abhaya Libre', serif;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><img src="./images/logo.jpg" alt="Logo"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="index.html">Home</a></li>
+        <li><a href="myhobbies.html">My Hobbies</a></li>
+        <li><a href="myfavoritesongs1.html">My Favorite Songs: Part 1</a></li>
+        <li><a href="myfavoritesongs2.html">My Favorite Songs: Part 2</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-12 text-left">
+      <h1>Welcome!/How I Made This</h1>
+      <h2>My Google Map</h2>
+      
+      <div id="map" style="width:100%;height:500px"></div>
+      
+      <script>
+      function myMap() {
+        var myCenter = new google.maps.LatLng(41.88425,-87.63245);
+        var myCenter2 = new google.maps.LatLng(42.05702,-87.68645);
+        var myCenter3 = new google.maps.LatLng(42.04226,-87.88911);
+        var mapCanvas = document.getElementById("map");
+        var mapOptions = {center: myCenter, zoom: 10};
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var marker = new google.maps.Marker({position:myCenter});
+        marker.setMap(map);
+        var marker2 = new google.maps.Marker({position:myCenter2})
+        marker2.setMap(map);
+        var marker3 = new google.maps.Marker({position:myCenter3})
+        marker3.setMap(map);
+        var flightPath = new google.maps.Polygon({
+          path: [myCenter, myCenter2, myCenter3, myCenter],
+          strokeColor: "#FF0000",
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: "#000000",
+          fillOpacity: 0.4
+        });
+        flightPath.setMap(map);
+      }
+      </script>
+      
+      <script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+
+      <h2>My Process</h2>
+      <p>First, I created the "project1" folder and put the subfolders "audio" and "images" to store its respective files. Next, I copied a Bootstrap template from W3Schools to work with. Then, I planned the webpages for the website. Finally, I actually created the website.</p>
+      <h2>Decisions</h2>
+      <ol>
+        <li>To make a separate folder for each type of file that I would use.</li>
+        <li>To choose the "Webpage" Bootstrap template from  W3Schools.</li>
+        <li>To include the same logo and footer text on each page.</li>
+        <li>To have a section for links for every page except the home pages.</li>
+        <li>To make my webpages about my hobbies and favorite trap/pop songs, respectively.</li>
+        <li>To have a section for each separate hobby/song on each page.</li>
+        <li>To put the Google Map on the home page.</li>
+      </ol>
+      <h2>Template Modifications</h2>
+      <ul>
+        <li>Removed a link in the navbar for a login section.</li>
+        <li>Removed a 2 column section that was for ads, since I wasn't going to put any ads on the page.</li>
+        <li>Made the other two sections (2 column and 8 column, respectively) increase their columns by one (3 columns and 9 columns) to take up the space of the one deleted.</li>
+        <li>Changed the sans-serif font to a serif font from Google Fonts.</li>
+      </ul>
+      <h2>The Easy Parts</h2>
+      <p>To be honest, most of it was things I've already learned the year before and had done recently, or was something I easily understood or had in mind, were very easy. I already knew how to set Google fonts, make each heading type, and include audio into a webpage. This made making the website very easy, for the most part.</p>
+      <h2>The Hard Parts</h2>
+      <p>The only hard part was the making of the Google map. As I had no prior experience with it, it took me about half an hour to fully understand how I was supposed to include markers and a polygon using those markers. Even then, it took a bit of work and looking back and forth in order to make the code work and display with little difficulty.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Made by Ethan Pizarro</p>
+</footer>
+
+</body>
+</html>

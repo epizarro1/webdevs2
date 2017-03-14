@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Favorite Songs: Part 1</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    
+    body {
+        font-family: 'Abhaya Libre', serif;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"><img src="./images/logo.jpg" alt="Logo"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="myhobbies.html">My Hobbies</a></li>
+        <li class="active"><a href="myfavoritesongs1.html">My Favorite Songs: Part 1</a></li>
+        <li><a href="myfavoritesongs2.html">My Favorite Songs: Part 2</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <p><a href="https://www.youtube.com/watch?v=pVLmZMjxfjw" target="_blank">Eiffel 65 - Blue (KNY Factory Remix)</a></p>
+      <p><a href="https://www.youtube.com/watch?v=0t2tjNqGyJI" target="_blank">Twenty One Pilots - Stressed Out (Tomsize Remix)</a></p>
+      <p><a href="https://www.youtube.com/watch?v=5hEh9LiSzow" target="_blank">Jetta - I'd Love to Change the World (Matstubs Remix)</a></p>
+      <p><a href="https://www.youtube.com/watch?v=ZM77Q7gZscg" target="_blank">Hitimpulse - I'm In Love With The Coco</a></p>
+      <p><a href="https://www.youtube.com/watch?v=eMFZn-M8LfE" target="_blank">Illenium - It's All on U (feat. Liam O'Donnell)</a></p>
+      <p><a href="https://www.youtube.com/watch?v=SrojgRmqmOE" target="_blank">Playmen - Stand By Me Now (Gioni Remix)</a></p>
+      <p><a href="https://www.youtube.com/watch?v=IfQTcD8U520" target="_blank">Flux Pavilion & Matthew Koma - Emotional</a></p>
+      <p><a href="https://www.youtube.com/watch?v=dErT7dz2Y24" target="_blank">Stephen - Crossfire</a></p>
+      <p><a href="https://www.youtube.com/watch?v=BiBEheGyG5o" target="_blank">Rationale - Fuel To The Fire (The White Panda Remix)</a></p>
+      <p><a href="https://www.youtube.com/watch?v=LdQjndOvNn4" target="_blank">Galantis - Runaway (U & I) (Gioni Remix)</a></p>
+    </div>
+    <div class="col-sm-9 text-left">
+      <h1>My Favorite Songs: Part 1</h1>
+      <ol reversed>
+          <li>Eiffel 65 - Blue (KNY Factory Remix)</li>
+          <li>Twenty One Pilots - Stressed Out (Tomsize Remix)</li>
+          <li>Jetta - I'd Love to Change the World (Matstubs Remix)</li>
+          <li>Hitimpulse - I'm In Love With The Coco</li>
+          <li>Illenium - It's All on U (feat. Liam O'Donnell)</li>
+          <li>Playmen - Stand By Me Now (Gioni Remix)</li>
+          <li>Flux Pavilion & Matthew Koma - Emotional</li>
+          <li>Stephen - Crossfire</li>
+          <li>Rationale - Fuel To The Fire (The White Panda Remix)</li>
+          <li>Galantis - Runaway (U & I) (Gioni Remix)</li>
+      </ol>
+      <h3>Eiffel 65 - Blue (KNY Factory Remix)</h3>
+      <audio controls>
+          <source src="./audio/blue.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Twenty One Pilots - Stressed Out (Tomsize Remix)</h3>
+      <audio controls>
+          <source src="./audio/stressedout.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Jetta - I'd Love to Change the World (Matstubs Remix)</h3>
+      <audio controls>
+          <source src="./audio/idlovetochangetheworld.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Hitimpulse - I'm In Love With The Coco</h3>
+      <audio controls>
+          <source src="./audio/iminlovewiththecoco.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Illenium - It's All on U (feat. Liam O'Donnell)</h3>
+      <audio controls>
+          <source src="./audio/itsallonu.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Playmen - Stand By Me Now (Gioni Remix)</h3>
+      <audio controls>
+          <source src="./audio/standbymenow.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Flux Pavilion & Matthew Koma - Emotional</h3>
+      <audio controls>
+          <source src="./audio/emotional.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Stephen - Crossfire</h3>
+      <audio controls>
+          <source src="./audio/crossfire.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Rationale - Fuel To The Fire (The White Panda Remix)</h3>
+      <audio controls>
+          <source src="./audio/fueltothefire.mp3" type="audio/mpeg">
+      </audio>
+      <h3>Galantis - Runaway (U & I) (Gioni Remix)</h3>
+      <audio controls>
+          <source src="./audio/runaway.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Made by Ethan Pizarro</p>
+</footer>
+
+</body>
+</html>
