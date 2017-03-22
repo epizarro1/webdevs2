@@ -1,20 +1,10 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="manifest" href="manifest.json">
         <meta charset="UTF-8">
         <title>NYT Article Search</title>
         <style>
-          .demo-card-wide.mdl-card {
-            width: 512px;
-          }
-          .demo-card-wide > .mdl-card__title {
-            color: #fff;
-            height: 176px;
-            background: url('../assets/demos/welcome_card.jpg') center / cover;
-          }
-          .demo-card-wide > .mdl-card__menu {
-            color: #fff;
-          }
           #main {
             padding: 20px;
           }
@@ -105,6 +95,13 @@
                     }).fail(function() {
                         $("#output").html("<p>An error has occured.</p>");
                     });
+                });
+                // Register your service worker:
+                navigator.serviceWorker.register('./sw.js');
+                
+                // Then later, request a one-off sync:
+                navigator.serviceWorker.ready.then(function(swRegistration) {
+                  return swRegistration.sync.register('myFirstSync');
                 });
             });
         </script>

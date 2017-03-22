@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="manifest" href="manifest.json">
+        <meta charset="UTF-8">
+        <title>Home</title>
+        <style>
+          #main {
+            padding: 20px;
+          }
+        </style>
+    </head>
+    <body>
+        <!-- Uses a header that scrolls with the text, rather than staying locked at the top -->
+        <div class="mdl-layout mdl-js-layout">
+          <header class="mdl-layout__header mdl-layout__header--scroll">
+            <div class="mdl-layout__header-row">
+              <!-- Title -->
+              <span class="mdl-layout-title">Ethan's 3 Screen App</span>
+              <!-- Add spacer, to align navigation to the right -->
+              <div class="mdl-layout-spacer"></div>
+              <!-- Navigation -->
+              <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="index.html">Home</a>
+                <a class="mdl-navigation__link" href="articlesearch.html">Article Search</a>
+              </nav>
+            </div>
+          </header>
+          <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Ethan's 3 Screen App</span>
+            <nav class="mdl-navigation">
+              <a class="mdl-navigation__link" href="index.html">Home</a>
+              <a class="mdl-navigation__link" href="articlesearch.html">Article Search</a>
+            </nav>
+          </div>
+          <main class="mdl-layout__content" id="main">
+            <div class="page-content">
+                <h3>Home</h3>
+                <h5>About Me (Ethan Pizarro)</h5>
+                <img src="./300.png" alt="icon">
+                <p>Hi there. I'm Ethan, and I'm a 14-year-old amateur web app developer from Chicago. I go to Lane Tech as part of their academic center program for seventh and eighth graders. I made this app specifically for my family and friends, but everyone has access to it and can use it. Instructions on how to add it to the home screen for iOS is included.</p>
+                <h5>Add This to the Home Screen</h5>
+                <p>Note: this is for iOS only, as most of my friends and family members use iPhones.</p>
+                <ol>
+                  <li>Open Safari.</li>
+                  <li>Go to the website you want to add to the home screen.</li>
+                  <li>Tap the "Share" button (the square with the up arrow in it) and select the "Add to Home Screen" option. From here, the iOS device will ask you to name the shortcut.</li>
+                  <li>The icon will be available in the home screen.</li>
+                </ol>
+            </div>
+          </main>
+        </div>
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function() {
+            // Register your service worker:
+            navigator.serviceWorker.register('./sw.js');
+            // Then later, request a one-off sync:
+            navigator.serviceWorker.ready.then(function(swRegistration) {
+              return swRegistration.sync.register('myFirstSync');
+            });
+          });
+        </script>
+    </body>
+</html>
