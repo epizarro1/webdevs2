@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="manifest" href="manifest.json">
         <meta charset="UTF-8">
         <title>NYT Article Search</title>
         <style>
@@ -98,13 +97,6 @@
                     }).fail(function() {
                         $("#output").html("<p>An error has occured.</p>");
                     });
-                });
-                // Register your service worker:
-                navigator.serviceWorker.register('./sw.js');
-                
-                // Then later, request a one-off sync:
-                navigator.serviceWorker.ready.then(function(swRegistration) {
-                  return swRegistration.sync.register('myFirstSync');
                 });
             });
         </script>

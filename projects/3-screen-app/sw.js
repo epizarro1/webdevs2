@@ -1,13 +1,15 @@
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
   './',
-  './w3.css',
-  './manifest.json',
-  './index.html',
-  './articlesearch.html',
   './96.png',
   './144.png',
-  './192.png'
+  './192.png',
+  './300.png',
+  './articlesearch.html',
+  './bustracker.html',
+  './index.html',
+  './manifest.json',
+  './sw.js'
 ];
 self.addEventListener('install', function(event) {
   // Perform install steps
