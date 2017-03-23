@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="manifest" href="./manifest.json">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Weather PWA">
+        <link rel="apple-touch-icon" href="images/icons/icon-152x152.png">
+        <meta name="msapplication-TileImage" content="images/icons/icon-144x144.png">
+        <meta name="msapplication-TileColor" content="#2F3BA2">
         <meta charset="UTF-8">
         <title>CTA Bus Tracker</title>
         <style>
@@ -125,6 +132,13 @@
                   $("#p4").append(html);
                 }
               });
+            });
+            // Register your service worker:
+            navigator.serviceWorker.register('./sw.js');
+            
+            // Then later, request a one-off sync:
+            navigator.serviceWorker.ready.then(function(swRegistration) {
+              return swRegistration.sync.register('myFirstSync');
             });
           });
         </script>
