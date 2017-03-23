@@ -5,8 +5,6 @@ var urlsToCache = [
   './144.png',
   './192.png',
   './300.png',
-  './articlesearch.html',
-  './bustracker.html',
   './index.html',
   './manifest.json',
   './sw.js'

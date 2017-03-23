@@ -26,8 +26,6 @@
               <!-- Navigation -->
               <nav class="mdl-navigation">
                 <a class="mdl-navigation__link" href="index.html">Home</a>
-                <a class="mdl-navigation__link" href="articlesearch.html">Article Search</a>
-                <a class="mdl-navigation__link" href="bustracker.html">CTA Bus Tracker</a>
               </nav>
             </div>
           </header>
@@ -35,8 +33,6 @@
             <span class="mdl-layout-title">Ethan's 3 Screen App</span>
             <nav class="mdl-navigation">
               <a class="mdl-navigation__link" href="index.html">Home</a>
-              <a class="mdl-navigation__link" href="articlesearch.html">Article Search</a>
-              <a class="mdl-navigation__link" href="bustracker.html">CTA Bus Tracker</a>
             </nav>
           </div>
           <main class="mdl-layout__content" id="main">
@@ -48,11 +44,103 @@
                 <h5>Add This to the Home Screen</h5>
                 <p>Note: this is for iOS only, as most of my friends and family members use iPhones.</p>
                 <ol>
-                  <li>Open Safari.</li>
-                  <li>Go to the website you want to add to the home screen.</li>
                   <li>Tap the "Share" button (the square with the up arrow in it) and select the "Add to Home Screen" option. From here, the iOS device will ask you to name the shortcut.</li>
-                  <li>The icon will be available in the home screen.</li>
+                  <li>The icon will be available in the home screen for use.</li>
                 </ol>
+                <hr>
+                <h3>Search Articles</h3>
+                <p>This is to search articles of the New York Times. Put a search term into the box to search their database for articles.</p>
+                <!-- Expandable Textfield -->
+                <zform>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" id="input" type="text">
+                    <label class="mdl-textfield__label" for="input">Search</label>
+                  </div><br>
+                  <!-- Raised button with ripple -->
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="search">
+                      Search
+                  </button>
+                </zform>
+                <hr>
+                <div id="output"></div>
+                <hr>
+                <h3>CTA Bus Tracker</h3>
+                <p>This page brings up predictions for the bus stops at the intersection of North Western Avenue and West Addison Street.</p>
+                <!-- Raised button with ripple -->
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="btn">
+                  Search
+                </button>
+                <hr>
+                <div class="mdl-card">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Northbound</h2>
+                  </div>
+                  <div class="mdl-card__supporting-text">
+                    <p class="p" id="p1"></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="mdl-card">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Southbound</h2>
+                  </div>
+                  <div class="mdl-card__supporting-text">
+                    <p class="p" id="p2"></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="mdl-card">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Eastbound</h2>
+                  </div>
+                  <div class="mdl-card__supporting-text">
+                    <p class="p" id="p3"></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="mdl-card">
+                  <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Westbound</h2>
+                  </div>
+                  <div class="mdl-card__supporting-text">
+                    <p class="p" id="p4"></p>
+                  </div>
+                </div>
+                <hr>
+                <h3>Lane Tech Schedules</h3>
+                <h5>Regular</h5>
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                 <thead>
+                  <tr><th>Period</th><th>Start</th><th>End</th><th>Minutes</th></tr>
+                 </thead>
+                 <tbody>
+                  <tr><td>1</td><td>8:00 AM</td><td>8:50 AM</td><td>50</td></tr>
+                  <tr><td>2</td><td>8:55 AM</td><td>9:45 AM</td><td>50</td></tr>
+                  <tr><td>3</td><td>9:50 AM</td><td>10:40 AM</td><td>50</td></tr>
+                  <tr><td>4</td><td>10:45 AM</td><td>11:35 AM</td><td>50</td></tr>
+                  <tr><td>5</td><td>11:40 AM</td><td>12:30 PM</td><td>50</td></tr>
+                  <tr><td>6</td><td>12:35 PM</td><td>1:25 PM</td><td>50</td></tr>
+                  <tr><td>7</td><td>1:30 PM</td><td>2:20 PM</td><td>50</td></tr>
+                  <tr><td>8</td><td>2:25 PM</td><td>3:15 PM</td><td>50</td></tr>
+                 </tbody>
+                </table>
+                <h5>Advisory</h5>
+                <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                 <thead>
+                  <tr><th>Period</th><th>Start</th><th>End</th><th>Minutes</th></tr>
+                 </thead>
+                 <tbody>
+                  <tr><td>1</td><td>8:00 AM</td><td>8:43 AM</td><td>43</td></tr>
+                  <tr><td>2</td><td>8:48 AM</td><td>9:31 AM</td><td>43</td></tr>
+                  <tr><td>Advisory</td><td>9:36 AM</td><td>10:27 AM</td><td>51</td></tr>
+                  <tr><td>3</td><td>10:32 AM</td><td>11:15 AM</td><td>43</td></tr>
+                  <tr><td>4</td><td>11:20 AM</td><td>12:03 PM</td><td>43</td></tr>
+                  <tr><td>5</td><td>12:08 AM</td><td>12:51 PM</td><td>43</td></tr>
+                  <tr><td>6</td><td>12:56 PM</td><td>1:39 PM</td><td>43</td></tr>
+                  <tr><td>7</td><td>1:44 PM</td><td>2:27 PM</td><td>43</td></tr>
+                  <tr><td>8</td><td>2:32 PM</td><td>3:15 PM</td><td>43</td></tr>
+                 </tbody>
+                </table>
             </div>
           </main>
         </div>
@@ -61,13 +149,96 @@
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
-          $(function() {
-            // Register your service worker:
-            navigator.serviceWorker.register('./sw.js');
-            
-            // Then later, request a one-off sync:
-            navigator.serviceWorker.ready.then(function(swRegistration) {
-              return swRegistration.sync.register('myFirstSync');
+            /* global $ */
+            $(document).ready(function() {
+              $("#search").click(function() {
+                // clear the output div
+                $("#output").html("");
+                // set the query to the input value
+                var query = $("#input").val();
+                // create the url with its parameters
+                var baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+                var url = baseUrl += "?" + $.param({
+                  "api-key": "f6bce4fb3a5349e18c7bf76f10e0d774",
+                  "q": query,
+                  "sort": "newest"
+                });
+                $.getJSON(url).done(function(data) {
+                  console.log(data);
+                  $.each(data.response.docs, function(index, value) {
+                    var headline = value.headline.print_headline;
+                    if (headline === undefined || headline === "") {
+                      headline = value.headline.main;
+                    }
+                    var rawDate = value.pub_date;
+                    var date = new Date(rawDate);
+                    $("#output").append('<div class="mdl-card"><div class="mdl-card__title"><h2 class="mdl-card__title-text">'
+                    + headline
+                    + '</h2></div><div class="mdl-card__supporting-text"><p>Published '
+                    + date
+                    + '</p><p>Type: '
+                    + value.type_of_material
+                    + '</p><p>'
+                    + value.snippet
+                    + '</p></div></div>');
+                  });
+                }).fail(function() {
+                  $("#output").html("<p>An error has occured.</p>");
+                });
+              });
+              // Register your service worker:
+              navigator.serviceWorker.register('./sw.js');
+              // Then later, request a one-off sync:
+              navigator.serviceWorker.ready.then(function(swRegistration) {
+                return swRegistration.sync.register('myFirstSync');
+              });
+            });
+        </script>
+        <script>
+          /* global $ */
+          $(document).ready(function() {
+            $("#btn").click(function() {
+              $(".p").html("");
+              $.ajax({
+                url: "https://polar-garden-75406.herokuapp.com/apiPassThru.php",
+                dataType: "json",
+                method: "GET",
+                data: {"apiEndpoint": "http://www.ctabustracker.com/bustime/api/v2/getpredictions",
+                  "key": "VP7Jg5tpX5SdMKRrsuEgS4WjY",
+                  "format": "json",
+                  "stpid": "8195,8417,12569,12527",
+                  "top": ""
+                }
+              }).done(function(data) {
+                $.each(data["bustime-response"]["prd"], function(i, v) {
+                  var delay = v.dly;
+                  if (delay == false) {
+                    delay = "No";
+                  } else {
+                    delay = "Yes";
+                  }
+                  var html = "Stop Name: "
+                  + v.stpnm
+                  + "<br>Route: "
+                  + v.rt
+                  + "<br>Delayed: "
+                  + delay
+                  + "<br>Arrival Time: "
+                  + v.prdtm
+                  + "<br>Minutes Until Arrival: "
+                  + v.prdctdn
+                  + "<br><br>";
+                  if (v.rtdir == "Northbound") {
+                    $("#p1").append(html);
+                  } else if (v.rtdir == "Southbound"){
+                    $("#p2").append(html);
+                  } else if (v.rtdir == "Eastbound") {
+                    $("#p3").append(html);
+                  } else {
+                    $("#p4").append(html);
+                  }
+                });
+              });
             });
           });
         </script>
