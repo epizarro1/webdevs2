@@ -180,7 +180,9 @@
                     + value.type_of_material
                     + '</p><p>'
                     + value.snippet
-                    + '</p></div></div>');
+                    + '</p><p><a href="'
+                    + value.web_url
+                    + '" target="_blank">Article</a></p></div></div>');
                   });
                 }).fail(function() {
                   $("#output").html("<p>An error has occured.</p>");
