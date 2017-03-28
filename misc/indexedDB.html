@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>IndexedDB</title>
+    </head>
+    <body>
+        <!-- Simple header with fixed tabs. -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs">
+          <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+              <!-- Title -->
+              <span class="mdl-layout-title">Indexed DB</span>
+            </div>
+            <!-- Tabs -->
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+              <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Tab 1</a>
+              <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
+              <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
+            </div>
+          </header>
+          <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">IndexedDB</span>
+          </div>
+          <main class="mdl-layout__content">
+            <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+              <div class="page-content">
+                  <h3>Test</h3>
+                  <button id="btn">Test</button>
+              </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+              <div class="page-content">
+                  <h3>Test</h3>
+              </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+              <div class="page-content">
+                  <h3>Test</h3>
+              </div>
+            </section>
+          </main>
+        </div>
+        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <meta charset="UTF-8">
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+        <script>
+            /* global $ */
+            $(function() {
+              $("#btn").click(function() {
+                $.getJSON("https://data.cityofchicago.org/resource/tt4n-kn4t.json?department=CITY%20COUNCIL").done(function(data) {
+                  console.log(data);
+                }).catch(function(error) {
+                   alert("An error occured: " + error);
+                });
+              });
+            });
+        </script>
+    </body>
+</html>
