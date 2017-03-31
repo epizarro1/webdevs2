@@ -27,9 +27,9 @@
             </div>
             <!-- Tabs -->
             <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-              <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Search Employees</a>
-              <a href="#fixed-tab-2" class="mdl-layout__tab">Tab 2</a>
-              <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
+              <a href="#fixed-tab-1" class="mdl-layout__tab is-active">Data</a>
+              <a href="#fixed-tab-2" class="mdl-layout__tab">Search Employees</a>
+              <a href="#fixed-tab-3" class="mdl-layout__tab">Add Employees</a>
             </div>
           </header>
           <div class="mdl-layout__drawer">
@@ -38,7 +38,16 @@
           <main class="mdl-layout__content">
             <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
               <div class="page-content">
-                <h3>Current City Council Employee Search</h3>
+                <h3>Current Chicago City Council Employee Data</h3>
+                <p>Use this page to display the current employees of the Chicago City Council.</p>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="showData">Show Data</button>
+                <hr>
+                <div id="data"></div>
+              </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+              <div class="page-content">
+                <h3>Current Chicago City Council Employee Search</h3>
                 <p>With this page, you can search current City Council workers by name in all capital letters.</p>
                 <form>
                   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -50,9 +59,6 @@
                 <hr>
                 <div id="output"></div>
               </div>
-            </section>
-            <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-              <div class="page-content"></div>
             </section>
             <section class="mdl-layout__tab-panel" id="fixed-tab-3">
               <div class="page-content"></div>
@@ -68,6 +74,48 @@
               var db = new Dexie("employeeDB");
               db.version(1).stores({
                 employees: '++id,name,title,department,annual_salary'
+              });
+              $("#showData").click(function() {
+                db.employees.count().then(function(count) {
+                  console.log(count);
+                  if (count == 0) {
+                    $("#data").html("");
+                    $.getJSON("https://data.cityofchicago.org/resource/tt4n-kn4t.json?department=CITY%20COUNCIL").done(function(data) {
+                      console.log(data);
+                      $.each(data, function(i,v) {
+                        db.employees.add({
+                          name: v.name,
+                          title: v.job_titles,
+                          department: v.department,
+                          annual_salary: v.employee_annual_salary
+                        });
+                        $("#data").append("<div class='mdl-card'><div class='mdl-card__title'><h2 class='mdl-card__title-text'>"
+                        + v.name
+                        + '</h2></div><div class="mdl-card__supporting-text"><p>Title: '
+                        + v.title
+                        + '<br>Department: '
+                        + v.department
+                        + '<br>Annual Salary: '
+                        + v.annual_salary
+                        + '</p></div></div><hr>');
+                        });
+                    }).catch(function(error) {
+                      alert("An error occured: " + error);
+                    });
+                  } else {
+                    db.employees.each(function(employee) {
+                      $("#data").append("<div class='mdl-card'><div class='mdl-card__title'><h2 class='mdl-card__title-text'>"
+                        + employee.name
+                        + '</h2></div><div class="mdl-card__supporting-text"><p>Title: '
+                        + employee.title
+                        + '<br>Department: '
+                        + employee.department
+                        + '<br>Annual Salary: '
+                        + employee.annual_salary
+                        + '</p></div></div><hr>');
+                    });
+                  }
+                });
               });
               $("#search").click(function() {
                 var query = $("#input").val();
