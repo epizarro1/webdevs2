@@ -61,7 +61,36 @@
               </div>
             </section>
             <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-              <div class="page-content"></div>
+              <div class="page-content">
+                <h3>Add Employees</h3>
+                <p>Here you can add employees to the city council database.</p>
+                <!-- Textfield with Floating Label -->
+                <form>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="name">
+                    <label class="mdl-textfield__label" for="sample3">Name</label>
+                  </div>
+                  <br>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="titles">
+                    <label class="mdl-textfield__label" for="sample3">Job Titles</label>
+                  </div>
+                  <br>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="department">
+                    <label class="mdl-textfield__label" for="sample3">Department</label>
+                  </div>
+                  <br>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="annualSalary">
+                    <label class="mdl-textfield__label" for="sample3">Annual Salary</label>
+                  </div>
+                </form><br>
+                <!-- Colored raised button -->
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="addEmployee">
+                  Add Employee
+                </button>
+              </div>
             </section>
           </main>
         </div>
@@ -121,49 +150,52 @@
                 var query = $("#input").val();
                 console.log(query);
                 db.employees.count().then(function(count) {
-                console.log(count);
-                if (count == 0) {
-                  $("#output").html("");
-                  $.getJSON("https://data.cityofchicago.org/resource/tt4n-kn4t.json?department=CITY%20COUNCIL").done(function(data) {
-                    console.log(data);
-                    $.each(data, function(i,v) {
-                      db.employees.add({
-                        name: v.name,
-                        title: v.job_titles,
-                        department: v.department,
-                        annual_salary: v.employee_annual_salary
+                  console.log(count);
+                  if (count == 0) {
+                    $("#output").html("");
+                    $.getJSON("https://data.cityofchicago.org/resource/tt4n-kn4t.json?department=CITY%20COUNCIL").done(function(data) {
+                      console.log(data);
+                      $.each(data, function(i,v) {
+                        db.employees.add({
+                          name: v.name,
+                          title: v.job_titles,
+                          department: v.department,
+                          annual_salary: v.employee_annual_salary
+                        });
                       });
+                      db.employees.where("name").startsWith(query).each(function(employee) {
+                        console.log(employee.name);
+                        $("#output").append("<div class='mdl-card'><div class='mdl-card__title'><h2 class='mdl-card__title-text'>"
+                        + employee.name
+                        + '</h2></div><div class="mdl-card__supporting-text"><p>Title: '
+                        + employee.title
+                        + '<br>Department: '
+                        + employee.department
+                        + '<br>Annual Salary: '
+                        + employee.annual_salary
+                        + '</p></div></div><hr>');
+                      });
+                    }).catch(function(error) {
+                      alert("An error occured: " + error);
                     });
+                  } else {
+                    $("#output").html("");
                     db.employees.where("name").startsWith(query).each(function(employee) {
-                      console.log(employee.name);
                       $("#output").append("<div class='mdl-card'><div class='mdl-card__title'><h2 class='mdl-card__title-text'>"
-                      + employee.name
-                      + '</h2></div><div class="mdl-card__supporting-text"><p>Title: '
-                      + employee.title
-                      + '<br>Department: '
-                      + employee.department
-                      + '<br>Annual Salary: '
-                      + employee.annual_salary
-                      + '</p></div></div><hr>');
+                        + employee.name
+                        + '</h2></div><div class="mdl-card__supporting-text"><p>Title: '
+                        + employee.title
+                        + '<br>Department: '
+                        + employee.department
+                        + '<br>Annual Salary: '
+                        + employee.annual_salary
+                        + '</p></div></div><hr>');
                     });
-                  }).catch(function(error) {
-                    alert("An error occured: " + error);
-                  });
-                } else {
-                  $("#output").html("");
-                  db.employees.where("name").startsWith(query).each(function(employee) {
-                    $("#output").append("<div class='mdl-card'><div class='mdl-card__title'><h2 class='mdl-card__title-text'>"
-                      + employee.name
-                      + '</h2></div><div class="mdl-card__supporting-text"><p>Title: '
-                      + employee.title
-                      + '<br>Department: '
-                      + employee.department
-                      + '<br>Annual Salary: '
-                      + employee.annual_salary
-                      + '</p></div></div><hr>');
-                  });
-                }
+                  }
+                });
               });
+              $("#addEmployee").click(function() {
+                db.employees.put({name: $("#name").val(), title: $("#titles").val(), department: $("#department").val(), annual_salary: $("#annualSalary").val()});
               });
               // Register your service worker:
               navigator.serviceWorker.register('./sw.js');
