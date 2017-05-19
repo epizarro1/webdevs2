@@ -1,6 +1,6 @@
 {
-  "name": "Ethan P's 3 Screen App",
-  "short_name": "3 Screen App",
+  "name": "CTA Bus Tracker",
+  "short_name": "Bus Track",
   "icons": [{
       "src": "96.png",
       "sizes": "96x96",

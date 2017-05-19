@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CTA Bus Tracker</title>
+        <style>
+          .page-content {margin: 2px;}
+          .table {
+            border: 2.5px solid #000000;
+            text-align: center;
+          }
+          #dbData {width:100%;}
+        </style>
+    </head>
+    <body>
+        <!-- Simple header with fixed tabs. -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                    mdl-layout--fixed-tabs">
+          <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+              <!-- Title -->
+              <span class="mdl-layout-title">CTA Bus Tracker</span>
+            </div>
+            <!-- Tabs -->
+            <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+              <a href="#fixed-tab-1" class="mdl-layout__tab is-active">CTA Bus Tracker</a>
+              <a href="#fixed-tab-2" class="mdl-layout__tab">Manage Stops</a>
+              <a href="#fixed-tab-3" class="mdl-layout__tab">Add Stops</a>
+            </div>
+          </header>
+          <main class="mdl-layout__content">
+            <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+              <div class="page-content">
+                  <h3>CTA Bus Tracker</h3>
+                  <p>Here is where all the bus predictions for your presets are displayed.</p>
+              </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+              <div class="page-content">
+                  <h3>Manage Stops</h3>
+                  <p>Here you can manage all the stops you've saved for your device.</p>
+                  <hr>
+                  <table class="table" id="dbData">
+                    <tr class="table">
+                      <th class="table">ID</th>
+                      <th class="table">Route</th>
+                      <th class="table">Direction</th>
+                      <th class="table">Stop ID</th>
+                    </tr>
+                  </table>
+                  <br>
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="delete">
+                    Clear All
+                  </button>
+                  <hr>
+                  <div id="clearButtons"></div>
+              </div>
+            </section>
+            <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+              <div class="page-content">
+                  <h3>Add Stops</h3>
+                  <p>Input a route, direction, and stop to add to your presets.</p>
+                  <label>Route:</label><br>
+                  <select id="route">
+                      <option disabled selected>Choose a route</option>
+                  </select><br><br>
+                  <label>Direction:</label><br>
+                  <select id="direction">
+                      <option disabled selected>Choose a direction</option>
+                  </select><br><br>
+                  <label>Stop:</label><br>
+                  <select id="stop">
+                      <option disabled selected>Choose a stop</option>
+                  </select><br><br>
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="addStop">
+                    Add
+                  </button>
+              </div>
+            </section>
+          </main>
+          <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+          <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+          <script>
+              /* global $ global Dexie */
+              $(function() {
+                  var db = new Dexie("busDB");
+                  db.version(1).stores({
+                    stops: '++id, route, direction, stopId'
+                  });
+                  db.stops.toArray().then(function(array) {
+                      $.each(array, function(i, v) {
+                        var id = v.id;
+                        var text = "<tr class='table clear'><td class='table'>"
+                        + id
+                        + "</td><td class='table clear'>"
+                        + v.route
+                        + "</td><td class='table clear'>"
+                        + v.direction
+                        + "</td><td class='table clear'>"
+                        + v.stopId
+                        + "</td></tr>";
+                        $("#dbData").append(text);
+                        $("#clearButtons").append("<button class='delStop clear' id='"
+                        + id
+                        + "'>Delete Stop (ID: "
+                        + id
+                        + ")</buttton");
+                      });
+                    });
+                  $("#direction").prop( "disabled", true );
+                  $("#stop").prop( "disabled", true );
+                  var passThrough = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+                  var apiKey = "VP7Jg5tpX5SdMKRrsuEgS4WjY";
+                  $.ajax({
+                      url: passThrough,
+                      dataType: "json",
+                      method: "GET",
+                      data: {"apiEndpoint": "http://www.ctabustracker.com/bustime/api/v2/getroutes",
+                        "key": apiKey,
+                        "format": "json"
+                      } 
+                  }).done(function(data) {
+                    $.each(data["bustime-response"]["routes"], function(i, v) {
+                      $("#route").append("<option value='"
+                      + v.rt
+                      + "'>"
+                      + v.rt
+                      + " - "
+                      + v.rtnm
+                      + "</option>");
+                    });
+                  });
+                  $("#route").change(function() {
+                    $( "#direction" ).prop( "disabled", false);
+                    $(".remove").remove();
+                    $(".remove2").remove();
+                    var route = $("#route").val();
+                    $.ajax({
+                      url: passThrough,
+                      dataType: "json",
+                      method: "GET",
+                      data: {
+                        "apiEndpoint": "http://www.ctabustracker.com/bustime/api/v2/getdirections",
+                        "key": apiKey,
+                        "format": "json",
+                        "rt": route
+                      }
+                    }).done(function(data) {
+                      $.each(data["bustime-response"]["directions"], function(i, v) {
+                        $("#direction").append("<option class='remove' value='"
+                        + v.dir
+                        + "'>"
+                        + v.dir
+                        + "</option>");
+                      });
+                    });
+                  });
+                  $("#direction").change(function() {
+                    $(".remove2").remove();
+                    $("#stop").prop( "disabled", false);
+                    var direction = $("#direction").val();
+                    var route = $("#route").val();
+                    $.ajax({
+                      url: passThrough,
+                      dataType: "json",
+                      method: "GET",
+                      data: {
+                        "apiEndpoint": "http://www.ctabustracker.com/bustime/api/v2/getstops",
+                        "key": apiKey,
+                        "format": "json",
+                        "rt": route,
+                        "dir": direction
+                      }
+                    }).done(function(data) {
+                      $.each(data["bustime-response"]["stops"], function(i, v) {
+                        $("#stop").append("<option class='remove2' value='"
+                        + v.stpid
+                        + "'>"
+                        + v.stpnm
+                        + "</option>");
+                      });
+                    });
+                  });
+                  $("#addStop").click(function() {
+                    $("#direction").prop( "disabled", true );
+                    $("#stop").prop( "disabled", true );
+                    $(".clear").remove();
+                    $(".remove .remove2").remove();
+                    db.stops.add({
+                      route: $("#route").val(),
+                      direction: $("#direction").val(),
+                      stopId: $("#stop").val(),
+                    });
+                    db.stops.toArray().then(function(array) {
+                      $.each(array, function(i, v) {
+                        var id = v.id;
+                        var text = "<tr class='table clear'><td class='table'>"
+                        + id
+                        + "</td><td class='table clear'>"
+                        + v.route
+                        + "</td><td class='table clear'>"
+                        + v.direction
+                        + "</td><td class='table clear'>"
+                        + v.stopId
+                        + "</td></tr>";
+                        $("#dbData").append(text);
+                        $("#clearButtons").append("<button class='delStop clear' id='"
+                        + id
+                        + "'>Delete Stop (ID: "
+                        + id
+                        + ")</buttton");
+                      });
+                    });
+                  });
+                  $("#delete").click(function() {
+                    db.stops.clear();
+                    $(".remove").remove();
+                    $(".remove2").remove();
+                    $(".clear").remove();
+                  });
+                  $("body").on("click", ".delStop", function() {
+                    alert(this.id);
+                    db.stops.delete(this.id);
+                  });
+              });
+          </script>
+        </div>
+    </body>
+</html>
